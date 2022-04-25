@@ -1,12 +1,11 @@
 const { path } = require('@vuepress/utils')
-const themeExtensions = require('./themeExtensionsPlugin')
+const themeExtensionsPlugin = require('./themeExtensionsPlugin')
 
-module.exports = {
-  default: themeExtensions,
-  themeExtensions,
-  Layout: path.resolve(
-      __dirname,
-      '../client/layouts/Layout.vue'
-  ), 
-}
+module.exports = themeExtensionsPlugin;
+exports = module.exports;
+exports.themeExtensionsPlugin = themeExtensionsPlugin;
+exports.Layout: path.resolve(
+    __dirname,
+    '../client/layouts/Layout.vue'
+);
 
