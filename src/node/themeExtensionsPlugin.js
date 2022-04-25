@@ -7,7 +7,7 @@ module.exports = (options, app) => {
     }, app);  
   
   return {
-    name: 'vuepress-onthispage',
+    name: 'vuepress-plugin-theme-extensions',
 
     clientAppEnhanceFiles: [
       path.resolve(__dirname, '../client/clientAppEnhance.js'),

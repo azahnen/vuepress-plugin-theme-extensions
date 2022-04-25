@@ -1,9 +1,9 @@
 const { path } = require('@vuepress/utils')
-const vuepressOnThisPage = require('./onThisPagePlugin')
+const themeExtensions = require('./themeExtensionsPlugin')
 
 module.exports = {
-  default: vuepressOnThisPage,
-  vuepressOnThisPage,
+  default: themeExtensions,
+  themeExtensions,
   Layout: path.resolve(
       __dirname,
       '../client/layouts/Layout.vue'
