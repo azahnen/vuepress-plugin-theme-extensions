@@ -10,14 +10,15 @@ export default {
   },
   computed: {
     navbarLinks1() {
+      console.log(this.navbarConfig);
       return [
-      ...(this.navbarConfig ? this.navbarConfig.value : []),
+      //...(this.navbarConfig ? this.navbarConfig.value : []),
       ]
     },
     navbarLinks2() {
       return [
-      ...(this.navbarRepo ? this.navbarRepo.value : []),
-      ...(this.navbarSelectLanguage ? this.navbarSelectLanguage.value : []),
+      //...(this.navbarRepo ? this.navbarRepo.value : []),
+      //...(this.navbarSelectLanguage ? this.navbarSelectLanguage.value : []),
       ]
     },
   },
