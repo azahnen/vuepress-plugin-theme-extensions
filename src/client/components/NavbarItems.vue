@@ -6,17 +6,16 @@ import NavbarDropdown from '@vuepress/theme-default/lib/client/components/Navbar
 
 export default {
   setup: (props, context) => {
-    const s = NavbarItemsDefault.setup(props, context);
-
-    return {
-      navbarLinks1: computed(() => [
-        ...(s.navbarConfig ? s.navbarConfig.value : []),
-      ]),
-      navbarLinks2: computed(() => [
-        ...(s.navbarRepo ? s.navbarRepo.value : []),
-        ...(s.navbarSelectLanguage ? s.navbarSelectLanguage.value : []),
-      ]),
-    };
+    return NavbarItemsDefault.setup(props, context);
+  },
+  computed: {
+    navbarLinks1: () => [
+      ...(this.navbarConfig ? this.navbarConfig.value : []),
+    ],
+    navbarLinks2: () => [
+      ...(this.navbarRepo ? this.navbarRepo.value : []),
+      ...(this.navbarSelectLanguage ? this.navbarSelectLanguage.value : []),
+    ],
   },
   components: {
     AutoLink,
