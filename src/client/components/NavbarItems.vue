@@ -5,17 +5,21 @@ import AutoLink from '@vuepress/theme-default/lib/client/components/AutoLink.vue
 import NavbarDropdown from '@vuepress/theme-default/lib/client/components/NavbarDropdown.vue'
 
 export default {
-  setup: (props, context) => {
+  setup(props, context) {
     return NavbarItemsDefault.setup(props, context);
   },
   computed: {
-    navbarLinks1: () => [
+    navbarLinks1() {
+      return [
       ...(this.navbarConfig ? this.navbarConfig.value : []),
-    ],
-    navbarLinks2: () => [
+      ]
+    },
+    navbarLinks2() {
+      return [
       ...(this.navbarRepo ? this.navbarRepo.value : []),
       ...(this.navbarSelectLanguage ? this.navbarSelectLanguage.value : []),
-    ],
+      ]
+    },
   },
   components: {
     AutoLink,
