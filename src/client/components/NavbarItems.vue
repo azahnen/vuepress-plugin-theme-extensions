@@ -10,11 +10,11 @@ export default {
 
     return {
       navbarLinks1: computed(() => [
-        ...s.navbarConfig.value,
+        ...(s.navbarConfig ? s.navbarConfig.value : []),
       ]),
       navbarLinks2: computed(() => [
-        ...s.navbarRepo.value,
-        ...s.navbarSelectLanguage.value,
+        ...(s.navbarRepo ? s.navbarRepo.value : []),
+        ...(s.navbarSelectLanguage ? s.navbarSelectLanguage.value : []),
       ]),
     };
   },
