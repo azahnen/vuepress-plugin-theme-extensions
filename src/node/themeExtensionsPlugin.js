@@ -1,5 +1,6 @@
 const { path } = require('@vuepress/utils')
 const { activeHeaderLinksPlugin } = require('@vuepress/plugin-active-header-links')
+const { containerPlugin } = require('@vuepress/plugin-container');
 
 module.exports = (options, app) => {
   const ahlp = activeHeaderLinksPlugin({
@@ -20,6 +21,8 @@ module.exports = (options, app) => {
     define: {
       ...ahlp.define,
     }, 
+
+    extendsMarkdown: containerPlugin({type: 'info', locales: {'/': {defaultInfo: 'Info'}, '/de/': {defaultInfo: 'Info'}}}, app).extendsMarkdown,
 
     // only if navbar enabled
     alias: (app) => {
