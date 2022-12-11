@@ -3,17 +3,17 @@ defineProps({
   type: {
     type: String,
     required: false,
-    default: 'tip',
+    default: "tip",
   },
   left: {
     type: String,
     required: false,
-    default: '',
+    default: "",
   },
   right: {
     type: String,
     required: false,
-    default: '',
+    default: "",
   },
   vertical: {
     type: String,
@@ -25,7 +25,7 @@ defineProps({
     required: false,
     default: undefined,
   },
-})
+});
 </script>
 
 <template>
@@ -57,15 +57,21 @@ defineProps({
   text-shadow: 1px 1px 2px var(--c-text-lightest);
   transition: color var(--t-color), background-color var(--t-color);
 
-  &.tip, &.stable, &.production {
+  &.tip,
+  &.stable,
+  &.production {
     background-color: var(--c-badge-tip);
   }
 
-  &.info, &.draft, &.candidate {
+  &.info,
+  &.draft,
+  &.candidate {
     background-color: var(--c-badge-info);
   }
 
-  &.warning, &.custom, &.experimental {
+  &.warning,
+  &.custom,
+  &.experimental {
     background-color: var(--c-badge-warning);
   }
 
@@ -79,6 +85,7 @@ defineProps({
 
   & + & {
     margin-left: 5px;
+    margin-top: 5px;
   }
 
   & > .left {

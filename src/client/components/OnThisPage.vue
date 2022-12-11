@@ -1,47 +1,49 @@
 <script setup>
-import {Toc} from '@vuepress/plugin-toc/lib/client';
-import {useThemeLocaleData} from "@vuepress/plugin-theme-data/lib/client";
+import { Toc } from "@vuepress/plugin-toc/lib/client";
+import { useThemeLocaleData } from "@vuepress/plugin-theme-data/lib/client";
 
 const themeLocale = useThemeLocaleData();
 const themeExtensions = themeLocale.value.themeExtensions || {};
 const enabled = themeExtensions.onThisPage !== false;
-const label = themeExtensions.onThisPageLabel || 'On This Page';
+const label = themeExtensions.onThisPageLabel || "On This Page";
 const tocOptions = {
-  linkChildrenActiveClass: ''
+  linkChildrenActiveClass: "",
 };
 </script>
 
 <template>
-     <div class="toc-place-holder" v-if="enabled">
-      <aside id="toc">
-        <div class="toc-header">{{ label }}</div>
-        <div class="toc-wrapper">
-          <Toc :options="tocOptions"/>
-        </div>
-      </aside>
-     </div>
+  <div class="toc-place-holder" v-if="enabled">
+    <aside id="toc">
+      <div class="toc-header">{{ label }}</div>
+      <div class="toc-wrapper">
+        <Toc :options="tocOptions" />
+      </div>
+    </aside>
+  </div>
 </template>
 
 <style lang="scss">
-@import '@vuepress/theme-default/lib/client/styles/_variables';
+@import "@vuepress/theme-default/lib/client/styles/_variables";
 
 .theme-default-content {
-  @media (min-width: 1280px) and (max-width: 1439px) {
+  max-width: none !important;
+
+  @media (max-width: 1279px) {
     margin: 0 0 !important;
   }
-  @media (min-width: 1280px) and (max-width: 1344px) {
-    padding: 0 1.5rem !important;
+  @media (min-width: 1280px) {
+    margin: 0 10rem 0 0 !important;
   }
-  @media (min-width: 1440px) and (max-width: 1480px) {
-    padding-left: 0rem !important;
+  @media (min-width: 1600px) {
+    margin: 0 15rem 0 0 !important;
   }
 }
 #toc {
   position: absolute;
-  left: 100%;
+  right: 0;
   display: none;
   overflow-y: auto;
-  min-width: 10rem;
+  width: 15rem;
   max-width: 15rem;
   max-height: 80vh;
   line-height: 1.7;
@@ -49,7 +51,8 @@ const tocOptions = {
   @media (min-width: 1280px) {
     display: block;
   }
-  @media (min-width: 1280px) and (max-width: 1640px) {    
+  @media (min-width: 1280px) and (max-width: 1599px) {
+    width: 10rem;
     max-width: 10rem;
   }
 }
@@ -61,19 +64,6 @@ const tocOptions = {
   position: sticky;
   top: calc(var(--navbar-height) + 6.2rem);
   z-index: 99;
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 0 2.5rem;
-
-  @media (min-width: 1280px) and (max-width: 1439px) {
-    margin: 0 0;    
-  }
-  @media (min-width: 1280px) and (max-width: 1344px) {
-    padding: 0 1.5rem;
-  }
-  @media (min-width: 1440px) and (max-width: 1480px) {
-    padding-left: 0rem;
-  }
 }
 
 .vuepress-toc-list {
@@ -115,19 +105,19 @@ const tocOptions = {
   color: var(--c-brand-light);
 }
 .vuepress-toc-link:before {
-    content: " ";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -0.5rem;
-    z-index: 2;
-    width: 2px;
-    background: 0 0;
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -0.5rem;
+  z-index: 2;
+  width: 2px;
+  background: 0 0;
 }
 .vuepress-toc-item .vuepress-toc-item .vuepress-toc-link:before {
-    left: -1rem;
+  left: -1rem;
 }
-.vuepress-toc-link.active:before { 
-    background: var(--before-color);
+.vuepress-toc-link.active:before {
+  background: var(--before-color);
 }
 </style>
