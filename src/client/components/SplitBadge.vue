@@ -59,6 +59,7 @@ defineProps({
 
   &.tip,
   &.stable,
+  &.mature,
   &.production {
     background-color: var(--c-badge-tip);
   }
@@ -71,6 +72,7 @@ defineProps({
 
   &.warning,
   &.custom,
+  &.proposal,
   &.experimental {
     background-color: var(--c-badge-warning);
   }
