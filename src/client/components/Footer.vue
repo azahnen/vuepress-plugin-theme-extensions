@@ -1,25 +1,41 @@
 <script setup>
-import {useThemeLocaleData} from "@vuepress/plugin-theme-data/lib/client";
+import { useThemeLocaleData } from "@vuepress/plugin-theme-data/client";
 
 const themeLocale = useThemeLocaleData();
 const themeExtensions = themeLocale.value.themeExtensions || {};
-const enabled = themeExtensions.footerSpacing || themeExtensions.legalNoticeUrl || themeExtensions.privacyNoticeUrl;
-const footerSpacing = themeExtensions.footerSpacing || '10rem';
+const enabled =
+  themeExtensions.footerSpacing ||
+  themeExtensions.legalNoticeUrl ||
+  themeExtensions.privacyNoticeUrl;
+const footerSpacing = themeExtensions.footerSpacing || "10rem";
 
 const legalNoticeUrl = themeExtensions.legalNoticeUrl || false;
-const legalNoticeTarget = legalNoticeUrl && legalNoticeUrl.startsWith('http') ? '_blank' : '_self';
-const legalNoticeLabel = themeExtensions.legalNoticeLabel || 'Legal Notice';
+const legalNoticeTarget =
+  legalNoticeUrl && legalNoticeUrl.startsWith("http") ? "_blank" : "_self";
+const legalNoticeLabel = themeExtensions.legalNoticeLabel || "Legal Notice";
 
 const privacyNoticeUrl = themeExtensions.privacyNoticeUrl || false;
-const privacyNoticeTarget = privacyNoticeUrl && privacyNoticeUrl.startsWith('http') ? '_blank' : '_self';
-const privacyNoticeLabel = themeExtensions.privacyNoticeLabel || 'Privacy Notice';
+const privacyNoticeTarget =
+  privacyNoticeUrl && privacyNoticeUrl.startsWith("http") ? "_blank" : "_self";
+const privacyNoticeLabel =
+  themeExtensions.privacyNoticeLabel || "Privacy Notice";
 </script>
 
 <template>
-     <div class="theme-ext-footer" v-if="enabled">
-         <a :href="legalNoticeUrl" :target="legalNoticeTarget" v-if="legalNoticeUrl">{{ legalNoticeLabel }}</a>
-         <a :href="privacyNoticeUrl" :target="privacyNoticeTarget" v-if="privacyNoticeUrl">{{ privacyNoticeLabel }}</a>
-     </div>
+  <div class="theme-ext-footer" v-if="enabled">
+    <a
+      :href="legalNoticeUrl"
+      :target="legalNoticeTarget"
+      v-if="legalNoticeUrl"
+      >{{ legalNoticeLabel }}</a
+    >
+    <a
+      :href="privacyNoticeUrl"
+      :target="privacyNoticeTarget"
+      v-if="privacyNoticeUrl"
+      >{{ privacyNoticeLabel }}</a
+    >
+  </div>
 </template>
 
 <style>

@@ -1,6 +1,6 @@
 <script setup>
-import { Toc } from "@vuepress/plugin-toc/lib/client";
-import { useThemeLocaleData } from "@vuepress/plugin-theme-data/lib/client";
+import { Toc } from "@vuepress/plugin-toc/client";
+import { useThemeLocaleData } from "@vuepress/plugin-theme-data/client";
 
 const themeLocale = useThemeLocaleData();
 const themeExtensions = themeLocale.value.themeExtensions || {};

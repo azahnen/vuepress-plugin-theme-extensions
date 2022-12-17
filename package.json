@@ -1,16 +1,17 @@
 {
   "name": "vuepress-plugin-theme-extensions",
   "version": "1.0.0",
+  "type": "module",
   "main": "src/node/index.js",
   "license": "MIT",
   "peerDependencies": {
-    "@vuepress/client": "2.0.0-beta.38",
-    "@vuepress/plugin-theme-data": "2.0.0-beta.38",
-    "@vuepress/theme-default": "2.0.0-beta.38",
-    "@vuepress/utils": "2.0.0-beta.38"
+    "@vuepress/client": "2.0.0-beta.59",
+    "@vuepress/plugin-theme-data": "2.0.0-beta.59",
+    "@vuepress/theme-default": "2.0.0-beta.59",
+    "@vuepress/utils": "2.0.0-beta.59"
   },
   "dependencies": {
-    "@vuepress/plugin-active-header-links": "2.0.0-beta.38",
-    "@vuepress/plugin-toc": "2.0.0-beta.38"
+    "@vuepress/plugin-active-header-links": "2.0.0-beta.59",
+    "@vuepress/plugin-toc": "2.0.0-beta.59"
   }
 }

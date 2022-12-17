@@ -1,30 +1,39 @@
-const { path } = require("@vuepress/utils");
-const {
-  activeHeaderLinksPlugin,
-} = require("@vuepress/plugin-active-header-links");
-const { containerPlugin } = require("@vuepress/plugin-container");
-const mdTable = require("./mdTable");
+import { getDirname, path } from "@vuepress/utils";
+import { activeHeaderLinksPlugin } from "@vuepress/plugin-active-header-links";
+import { containerPlugin } from "@vuepress/plugin-container";
+import { defaultTheme } from "@vuepress/theme-default";
+import { applyMdTable } from "./mdTable.js";
 
-module.exports = (options, app) => {
-  const ahlp = activeHeaderLinksPlugin(
-    {
-      headerLinkSelector: "a.vuepress-toc-link",
-    },
-    app
-  );
+const __dirname = getDirname(import.meta.url);
+
+export default (options) => (app) => {
+  const isNavbar = options.navbar !== false;
+  const isOnThisPage = options.onThisPage !== false;
+
+  const alias = isNavbar
+    ? {
+        "@theme/NavbarItems.vue": path.resolve(
+          __dirname,
+          "../client/components/NavbarItems.vue"
+        ),
+      }
+    : {};
+
+  if (isOnThisPage) {
+    options.sidebarDepth = 0;
+    if (options.locales) {
+      for (const tcl of Object.values(options.locales)) {
+        tcl.sidebarDepth = 0;
+      }
+    }
+  }
 
   return {
     name: "vuepress-plugin-theme-extensions",
+    extends: defaultTheme(options),
+    alias,
 
-    clientAppEnhanceFiles: [
-      path.resolve(__dirname, "../client/clientAppEnhance.js"),
-    ],
-
-    clientAppSetupFiles: [ahlp.clientAppSetupFiles],
-
-    define: {
-      ...ahlp.define,
-    },
+    clientConfigFile: path.resolve(__dirname, "../client/clientConfig.js"),
 
     extendsMarkdown: (md, app) => {
       containerPlugin(
@@ -38,51 +47,13 @@ module.exports = (options, app) => {
         app
       ).extendsMarkdown(md, app);
 
-      mdTable.extendsMarkdown(md, app);
+      applyMdTable(md, options);
     },
 
-    // only if navbar enabled
-    alias: (app) => {
-      const themeExt = app.options.themeConfig.themeExtensions || {};
-      const isNavbar = themeExt.navbar !== false;
-      const aliases = {};
-
-      if (isNavbar) {
-        aliases["@theme/NavbarItems.vue"] = path.resolve(
-          __dirname,
-          "../client/components/NavbarItems.vue"
-        );
-      }
-
-      return aliases;
-    },
-
-    onInitialized: (app) => {
-      const themeExt = app.options.themeConfig.themeExtensions || {};
-      const isOnThisPage = themeExt.onThisPage !== false;
-
-      if (isOnThisPage) {
-        const isDefaultThemeLayout =
-          app.layouts &&
-          app.layouts.Layout &&
-          app.layouts.Layout.endsWith(
-            "@vuepress/theme-default/lib/client/layouts/Layout.vue"
-          );
-
-        if (isDefaultThemeLayout) {
-          app.layouts.Layout = path.resolve(
-            __dirname,
-            "../client/layouts/Layout.vue"
-          );
-
-          app.options.themeConfig.sidebarDepth = 0;
-          if (app.options.themeConfig.locales) {
-            for (const tcl of Object.values(app.options.themeConfig.locales)) {
-              tcl.sidebarDepth = 0;
-            }
-          }
-        }
-      }
-    },
+    plugins: [
+      activeHeaderLinksPlugin({
+        headerLinkSelector: "a.vuepress-toc-link",
+      }),
+    ],
   };
 };

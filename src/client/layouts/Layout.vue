@@ -1,9 +1,11 @@
 <script setup>
 import ParentLayout from "@vuepress/theme-default/lib/client/layouts/Layout.vue";
+import OnThisPage from "../components/OnThisPage.vue";
+import Footer from "../components/Footer.vue";
 </script>
 
 <template>
-  <ParentLayout>
+  <ParentLayout class="theme-ext">
     <template #page-top>
       <OnThisPage />
     </template>
@@ -15,6 +17,11 @@ import ParentLayout from "@vuepress/theme-default/lib/client/layouts/Layout.vue"
 
 <style lang="scss">
 @import "@vuepress/theme-default/lib/client/styles/_variables";
+
+.theme-ext table {
+  width: 100%;
+  display: table;
+}
 
 .theme-ext-td {
   font-size: 16px;
