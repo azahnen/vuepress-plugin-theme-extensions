@@ -1,6 +1,7 @@
 import { getDirname, path } from "@vuepress/utils";
 import { activeHeaderLinksPlugin } from "@vuepress/plugin-active-header-links";
 import { containerPlugin } from "@vuepress/plugin-container";
+import { tocPlugin } from "@vuepress/plugin-toc";
 import { defaultTheme } from "@vuepress/theme-default";
 import { applyMdTable } from "./mdTable.js";
 
@@ -54,6 +55,7 @@ export default (options) => (app) => {
       activeHeaderLinksPlugin({
         headerLinkSelector: "a.vuepress-toc-link",
       }),
+      tocPlugin({}),
     ],
   };
 };
