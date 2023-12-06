@@ -1,4 +1,5 @@
 import { fs, path } from "@vuepress/utils";
+//import util from "util";
 
 export const createGroups =
   (root) =>
@@ -35,7 +36,7 @@ export const createGroups =
     const sidebar = title
       ? {
           text: title,
-          children: [...files, ...opts.children],
+          children: [...files, ...opts.children].sort(sortChildren),
           collapsible: opts.collapsible,
           link: opts.headerReadme ? dir : undefined,
         }
@@ -59,6 +60,13 @@ function sortMdFiles(a, b) {
   }
 
   return 0;
+}
+
+function sortChildren(a, b) {
+  const a1 = typeof a === "string" ? a : a.link;
+  const b1 = typeof b === "string" ? b : b.link;
+
+  return sortMdFiles(a1, b1);
 }
 
 function normalize(directory) {
