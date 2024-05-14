@@ -1,6 +1,8 @@
 <script setup>
 import { useThemeLocaleData } from "@vuepress/plugin-theme-data/client";
+import { usePageData } from "@vuepress/client";
 
+const page = usePageData();
 const themeLocale = useThemeLocaleData();
 const themeExtensions = themeLocale.value.themeExtensions || {};
 const enabled = themeExtensions.onThisPage !== false;
@@ -8,6 +10,7 @@ const label = themeExtensions.onThisPageLabel || "On This Page";
 const tocOptions = {
   linkChildrenActiveClass: "",
 };
+console.log("HEADERS", page.value.headers);
 </script>
 
 <template>
